@@ -4,4 +4,8 @@ nog iets bijschrijven
 
 
 blabla
+<<<<<<< HEAD
 bla
+=======
+blaDGObla
+>>>>>>> 54a160ccf0c35ac2d9c8d476dde8bbd27bb1861b
