@@ -26,8 +26,15 @@ class Servers
     }
 
     [void] initialize([string] $sServersSearchbase){
-        Get-ADComputer -Filter {(OperatingSystem -like "*server*") -AND (enabled -eq $true)} -SearchBase $sServersSearchbase | Sort-Object Name
-    
+        $AD_Servers = Get-ADComputer -Filter {(OperatingSystem -like "*server*") -AND (enabled -eq $true)} -SearchBase $sServersSearchbase | Sort-Object Name
+        $AD_Servers| Foreach-object { 
+            Awrite-Verbose("Testing connection for " + $_.Name) 
+            If ((Test-Connection -ComputerName $_.Name -Count 1 -Quiet) -eq $false){
+                $this.addServer($_.name, "","", $true)
+            }Else{
+                $this.addServer($_.name, "","", $true)
+            }
+        }
     }
     
     [void] addServer([string] $sName, [string] $sOs, [string] $sArch, [boolean]$isOnline){
