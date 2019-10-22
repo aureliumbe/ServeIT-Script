@@ -6,7 +6,6 @@ class Servers
     Servers()
     {
       $this.oServers = new-object System.Xml.XmlDocument
-      
       $decl = $this.oServers.CreateXmlDeclaration("1.0","UTF-8",$null)
       $this.oServers.AppendChild($decl)
       $this.oServers.createNode("element","Servers",$null)
