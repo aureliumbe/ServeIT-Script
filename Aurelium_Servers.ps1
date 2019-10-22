@@ -36,7 +36,43 @@ class Servers
         }
     }
     
-    [void] addServer([string] $sName, [string] $sOs, [string] $sArch, [boolean]$isOnline){
+    [string] sOS([string] $sName){
+
+        return ""
+    }
+
+    [string] sArch([string] $sName){
+
+        return ""
+    }
+
+    [boolean] bIsOnline([string] $sName){
+
+        return ""
+    }
+
+    [boolean] bIsDc([string] $sName){
+
+        return ""
+    }
+    [boolean] bIsExch([string] $sName){
+
+        return ""
+    }
+    [boolean] bPSRemoting([string] $sName){
+
+        return ""
+    }
+
+    [void] addServer([string] $sName){
+        $sArch = sArch($sname)
+        $sOs = sOS($sName)
+        $isOnline = bIsOnline($sname)
+        $isDc = bIsDC($sname)
+        $isExch = bIsExch($sname)
+        $PSremoteing = bPsRemoting($sname)
+
+
         $root = $this.oservers.Servers
         $c = $root.createNode("element","Server",$null)
         $c.setAttribute("Name", $sName)
@@ -51,10 +87,13 @@ class Servers
         $e.innerText = $sArch
         $c.appendChild($e)
         $e=$c.createNode("element","isDC",$null)
-        $e.innerText = "0"
+        $e.innerText = $isDc
         $c.appendChild($e)
         $e=$c.createNode("element","isExch",$null)
         $e.innerText = "0"
+        $e=$c.createNode("element","PSremoting",$null)
+        $e.innerText = "0"
+        
         $c.appendChild($e)
         $root.appentChild($c)
     }
