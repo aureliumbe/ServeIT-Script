@@ -6,5 +6,6 @@
         <OS></OS>
         <isDC></isDC>
         <isExch></isExch>
+        <psRemoting></psRemoting>
     </server>
 </server>
