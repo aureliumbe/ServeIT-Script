@@ -73,6 +73,7 @@ class Servers
         $PSremoteing = bPsRemoting($sname)
 
 
+        
         $root = $this.oservers.Servers
         $c = $root.createNode("element","Server",$null)
         $c.setAttribute("Name", $sName)
