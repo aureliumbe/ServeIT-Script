@@ -90,10 +90,10 @@ class Servers
         $e.innerText = $isDc
         $c.appendChild($e)
         $e=$c.createNode("element","isExch",$null)
-        $e.innerText = "0"
+        $e.innerText = $isExch
         $e=$c.createNode("element","PSremoting",$null)
-        $e.innerText = "0"
-        
+        $e.innerText = $PSremoteing
+
         $c.appendChild($e)
         $root.appentChild($c)
     }
