@@ -1,4 +1,16 @@
-import-module .\modulesPS3\ServerModule.psm1
+import-module .\modulesPS3\ServerModule.psd1
 
-get-Servers
-$oservers.save(".\output\getservers.xml")
+#### verbose functie ####
+function write-Verbose($text){
+    if($Verbose) {
+        Write-Host $text -ForegroundColor DarkGreen | Out-Default
+    }
+ }
+#####
+
+
+write-Verbose("Getting Servers")
+get-ServersFromAD
+write-Verbose("Saving XML File")
+write-ServersToXML(".\output\servers.xml")
+write-Verbose("End Script")

@@ -1,10 +1,3 @@
-#### verbose functie ####
-function write-Verbose($text){
-    if($Verbose) {
-        Write-Host $text -ForegroundColor DarkGreen | Out-Default
-    }
- }
-#####
 #### Server Object ####
     [XML] $oServers = New-Object System.Xml.XmlDocument
     $decl = $oServers.CreateXmlDeclaration("1.0","UTF-8",$null)
@@ -13,13 +6,11 @@ function write-Verbose($text){
     $oServers.appendchild($oServersElement)
 
     #Functions and methods
-    function get-Servers() {
-        #$AD_Servers = Get-ADComputer -Filter { (OperatingSystem -like "*server*") -AND (enabled -eq $true) } | Sort-Object Name
-        #$AD_Servers | Foreach-object { 
-        #        add-Server($_.name)
-        #}
-        add-Server("test")
-        add-Server("test2")
+    function get-ServersFromAD() {
+        $AD_Servers = Get-ADComputer -Filter { (OperatingSystem -like "*server*") -AND (enabled -eq $true) } | Sort-Object Name
+        $AD_Servers | Foreach-object { 
+                add-Server($_.name)
+        }
     }
 
     
@@ -85,7 +76,7 @@ function write-Verbose($text){
         $c.appendChild($e)
         $oServersElement.appendChild($c)
     }
+    function write-ServersToXML($path){
+        $oServers.save($path)
+    }
 #####
-
-get-Servers
-$oservers.save("servers.xml")
