@@ -69,8 +69,8 @@
         $e.innerText = $isExch
         $e = $oservers.createNode("element", "PSremoting", '')
         $e.innerText = $PSremoteing
-
         $c.appendChild($e)
+        
         $oServersElement.appendChild($c)
     }
     function write-ServersToXML($path){
