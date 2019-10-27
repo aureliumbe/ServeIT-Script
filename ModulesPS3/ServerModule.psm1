@@ -50,9 +50,6 @@
         $isExch = get-ServerIsExch($sname)
         $PSremoteing = get-ServerPsRemoting($sname)
 
-
-        
-        #$root = $oservers.get_DocumentElement()
         $c = $oservers.createNode("element", "Server", '')
         $c.setAttribute("Name", $sName)
         $c.setAttribute("isOnline", $isOnline)
