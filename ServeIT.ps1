@@ -10,7 +10,7 @@
 #
 
 ##################### List of all Functions #####################
-# Aget-NTFS_Volume_Health          Eventid: 98 Vlume Corruption
+# Aget-NTFS_Volume_Health          Eventid: 98 Volume Corruption
 # Aget-NPSextension_For_MFA
 # Aget-RDS_SG_Members
 # Aget-Check_Windows_Defender_ATP
