@@ -122,8 +122,8 @@
 
 
 # How to use a different (limited) AD SearchBase
-# ServeIT.ps1 -verbose -ServersSearchbase "OU=Servers,DC=werminval,DC=local"
-# ServeIT.ps1 -verbose -ServersSearchbase "OU=My Business,DC=werminval,DC=local"
+# ServeIT.ps1 -verbose -ServersSearchbase "OU=Servers,DC=domain,DC=local"
+# ServeIT.ps1 -verbose -ServersSearchbase "OU=My Business,DC=domain,DC=local"
 # ServeIT.ps1 -verbose -ServersSearchBase "OU=\+BN,DC=emea,DC=dir"
 
 
