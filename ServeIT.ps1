@@ -10,7 +10,7 @@
 #
 
 ##################### List of all Functions #####################
-# Aget-NTFS_Volume_Health          Eventid: 98 Vlume Corruption
+# Aget-NTFS_Volume_Health          Eventid: 98 Volume Corruption
 # Aget-NPSextension_For_MFA
 # Aget-RDS_SG_Members
 # Aget-Check_Windows_Defender_ATP
@@ -122,8 +122,8 @@
 
 
 # How to use a different (limited) AD SearchBase
-# ServeIT.ps1 -verbose -ServersSearchbase "OU=Servers,DC=werminval,DC=local"
-# ServeIT.ps1 -verbose -ServersSearchbase "OU=My Business,DC=werminval,DC=local"
+# ServeIT.ps1 -verbose -ServersSearchbase "OU=Servers,DC=domain,DC=local"
+# ServeIT.ps1 -verbose -ServersSearchbase "OU=My Business,DC=domain,DC=local"
 # ServeIT.ps1 -verbose -ServersSearchBase "OU=\+BN,DC=emea,DC=dir"
 
 
