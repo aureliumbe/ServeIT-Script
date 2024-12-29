@@ -147,20 +147,21 @@ Param(
 #################################################################################
 #### Check is PS Script is running with admin authorisation, else restart PS ####
 #################################################################################
-$IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator") 
-if( -not $IsAdmin){ 
-    try 
-    {  
-        $arg = "-file `"$($MyInvocation.ScriptName)`"" 
-        Start-Process "$psHome\powershell.exe" -Verb Runas -ArgumentList $arg  
-    } 
-    catch 
-    { 
-        Write-Warning "Error - Failed to restart script with runas"
-
-        break               
-    } 
-    exit # Quit this session of powershell  
+function Get-ScriptParameters {
+    Param ([hashtable]$NamedParameters)
+    return ($NamedParameters.GetEnumerator()|ForEach-Object {"-$($_.Key) `"$($_.Value)`""}) -join " "
+}
+# check if script is running as admin, else restart script as admin
+$IsAdmin = [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
+if (-Not $isAdmin) {
+    # check if script is running on Windows Vista or higher
+    if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
+        # construct a new command line, with the same script parameters, but with the -Verb RunAs parameter
+        $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + (Get-ScriptParameters $MyInvocation.BoundParameters) + " " + $MyInvocation.UnboundArguments
+        Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList $CommandLine
+        # exit the current script
+        Exit
+    }
 }
 
 
