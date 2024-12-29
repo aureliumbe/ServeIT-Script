@@ -152,7 +152,7 @@ function Get-ScriptParameters {
     return ($NamedParameters.GetEnumerator()|ForEach-Object {"-$($_.Key) `"$($_.Value)`""}) -join " "
 }
 # check if script is running as admin, else restart script as admin
-$IsAdmin = [Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
+$IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
 if (-Not $isAdmin) {
     # check if script is running on Windows Vista or higher
     if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
