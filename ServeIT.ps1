@@ -229,7 +229,6 @@ $WINS_Servers = @()
 try {
     $domain = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
     $LdapDomain = $(([adsisearcher]"").Searchroot.path).split("/")[2]
-    $source = "https://gallery.technet.microsoft.com/scriptcenter/Group-Policy-WMI-filter-38a188f3/file/103961/1/GPWmiFilter.psm1"
     }
 catch {
     Write-Host "Error initializing default drive: 'Unable to find a default server with Active Directory Web Services running.'"
@@ -239,6 +238,7 @@ catch {
 ############################################ Common Data ############################################
 
 try {
+    $source = "https://gallery.technet.microsoft.com/scriptcenter/Group-Policy-WMI-filter-38a188f3/file/103961/1/GPWmiFilter.psm1"
     Invoke-WebRequest $source -OutFile "$PSScriptRoot\GPWmiFilter.psm1"
     }
 Catch
