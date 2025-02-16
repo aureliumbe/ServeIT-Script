@@ -168,7 +168,7 @@ if (-Not $isAdmin) {
 ########################################
 #### Display ServeIT Script Version ####
 ########################################
-Write-Host "Version 1.8Beta49-122" -ForegroundColor Yellow | Out-Default
+Write-Host "Version 1.8Beta49-123" -ForegroundColor Yellow | Out-Default
 
 
 #############################################
@@ -4811,6 +4811,7 @@ else {
 
         #$SQL_Instance_Properties.PatchLevel.split(".")[0]
         Switch ($SQL_Instance_Properties.PatchLevel.split(".")[0]) {
+            "16" {$ReturnMsg = "Version: 2022 - "+$SQL_Instance_Properties.Edition+" installed"}
             "15" {$ReturnMsg = "Version: 2019 - "+$SQL_Instance_Properties.Edition+" installed"}
             "14" {$ReturnMsg = "Version: 2017 - "+$SQL_Instance_Properties.Edition+" installed"}
             "13" {$ReturnMsg = "Version: 2016 - "+$SQL_Instance_Properties.Edition+" installed"}
@@ -4825,6 +4826,7 @@ else {
             "9" {$ReturnMsg = "Version: 2005 - "+$SQL_Instance_Properties.Edition+" installed"}
             "8" {$ReturnMsg = "Version: 2000 - "+$SQL_Instance_Properties.Edition+" installed"}
             "7" {$ReturnMsg = "Version: 7.0 - "+$SQL_Instance_Properties.Edition+" installed"}
+	    Default {$ReturnMsg = "Version: "$SQL_Instance_Properties.PatchLevel+" - "+$SQL_Instance_Properties.Edition+" installed"}
             }
         $ReturnValue += ACreate-TestResult "SQL Server" $ReturnMsg $true    
         }
