@@ -147,27 +147,28 @@ Param(
 #################################################################################
 #### Check is PS Script is running with admin authorisation, else restart PS ####
 #################################################################################
-$IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator") 
-if( -not $IsAdmin){ 
-    try 
-    {  
-        $arg = "-file `"$($MyInvocation.ScriptName)`"" 
-        Start-Process "$psHome\powershell.exe" -Verb Runas -ArgumentList $arg  
-    } 
-    catch 
-    { 
-        Write-Warning "Error - Failed to restart script with runas"
-
-        break               
-    } 
-    exit # Quit this session of powershell  
+function Get-ScriptParameters {
+    Param ([hashtable]$NamedParameters)
+    return ($NamedParameters.GetEnumerator()|ForEach-Object {"-$($_.Key) `"$($_.Value)`""}) -join " "
+}
+# check if script is running as admin, else restart script as admin
+$IsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
+if (-Not $isAdmin) {
+    # check if script is running on Windows Vista or higher
+    if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
+        # construct a new command line, with the same script parameters, but with the -Verb RunAs parameter
+        $CommandLine = "-File `"" + $MyInvocation.MyCommand.Path + "`" " + (Get-ScriptParameters $MyInvocation.BoundParameters) + " " + $MyInvocation.UnboundArguments
+        Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList $CommandLine
+        # exit the current script
+        Exit
+    }
 }
 
 
 ########################################
 #### Display ServeIT Script Version ####
 ########################################
-Write-Host "Version 1.8Beta49-122" -ForegroundColor Yellow | Out-Default
+Write-Host "Version 1.8Beta49-123" -ForegroundColor Yellow | Out-Default
 
 
 #############################################
@@ -228,7 +229,6 @@ $WINS_Servers = @()
 try {
     $domain = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
     $LdapDomain = $(([adsisearcher]"").Searchroot.path).split("/")[2]
-    $source = "https://gallery.technet.microsoft.com/scriptcenter/Group-Policy-WMI-filter-38a188f3/file/103961/1/GPWmiFilter.psm1"
     }
 catch {
     Write-Host "Error initializing default drive: 'Unable to find a default server with Active Directory Web Services running.'"
@@ -238,6 +238,7 @@ catch {
 ############################################ Common Data ############################################
 
 try {
+    $source = "https://gallery.technet.microsoft.com/scriptcenter/Group-Policy-WMI-filter-38a188f3/file/103961/1/GPWmiFilter.psm1"
     Invoke-WebRequest $source -OutFile "$PSScriptRoot\GPWmiFilter.psm1"
     }
 Catch
@@ -4515,15 +4516,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
 
         if ($FFLevel_Status_Ok) {
             switch ($AD_Forest_Func_Level.trim()) {
-                0 {echo "Windows Forest Functional Level: Windows 2000"}
-                1 {echo "Windows Forest Functional Level: Windows 2003 interim"}
-                2 {echo "Windows Forest Functional Level: Windows 2003"}
-                3 {echo "Windows Forest Functional Level: Windows 2008"}
-                4 {echo "Windows Forest Functional Level: Windows 2008 R2"}
-                5 {echo "Windows Forest Functional Level: Windows 2012"}
-                6 {echo "Windows Forest Functional Level: Windows 2012 R2"}
-                7 {echo "Windows Forest Functional Level: Windows 2016"}
-                8 {echo "Windows Forest Functional Level: Windows 2019"}
+                0 {echo "Windows Forest Functional Level: Windows Server 2000"}
+                1 {echo "Windows Forest Functional Level: Windows Server 2003 interim"}
+                2 {echo "Windows Forest Functional Level: Windows Server 2003"}
+                3 {echo "Windows Forest Functional Level: Windows Server 2008"}
+                4 {echo "Windows Forest Functional Level: Windows Server 2008 R2"}
+                5 {echo "Windows Forest Functional Level: Windows Server 2012"}
+                6 {echo "Windows Forest Functional Level: Windows Server 2012 R2"}
+                7 {echo "Windows Forest Functional Level: Windows Server 2016"}
+                10 {echo "Windows Forest Functional Level: Windows Server 2025"}
                 }                
             }
         else {
@@ -4531,15 +4532,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
                 $Server = $item.split("|")[0]
                 $FFLevel = $item.split("|")[1]
                 switch ($FFLevel) {            
-                    0 {echo "Windows Forest Functional Level: Windows 2000 ($Server)"}
-                    1 {echo "Windows Forest Functional Level: Windows 2003 interim ($Server)"}
-                    2 {echo "Windows Forest Functional Level: Windows 2003 ($Server)"}
-                    3 {echo "Windows Forest Functional Level: Windows 2008 ($Server)"}
-                    4 {echo "Windows Forest Functional Level: Windows 2008 R2 ($Server)"}
-                    5 {echo "Windows Forest Functional Level: Windows 2012 ($Server)"}
-                    6 {echo "Windows Forest Functional Level: Windows 2012 R2 ($Server)"}
-                    7 {echo "Windows Forest Functional Level: Windows 2016 ($Server)"}
-                    8 {echo "Windows Forest Functional Level: Windows 2019 ($Server)"}
+                    0 {echo "Windows Forest Functional Level: Windows Server 2000 ($Server)"}
+                    1 {echo "Windows Forest Functional Level: Windows Server 2003 interim ($Server)"}
+                    2 {echo "Windows Forest Functional Level: Windows Server 2003 ($Server)"}
+                    3 {echo "Windows Forest Functional Level: Windows Server 2008 ($Server)"}
+                    4 {echo "Windows Forest Functional Level: Windows Server 2008 R2 ($Server)"}
+                    5 {echo "Windows Forest Functional Level: Windows Server 2012 ($Server)"}
+                    6 {echo "Windows Forest Functional Level: Windows Server 2012 R2 ($Server)"}
+                    7 {echo "Windows Forest Functional Level: Windows Server 2016 ($Server)"}
+                    10 {echo "Windows Forest Functional Level: Windows Server 2025 ($Server)"}
                     }
                 }
             }
@@ -4583,15 +4584,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
 
     if ($DFLevel_Status_Ok) {
     switch ($AD_Domain_Func_Level.trim()) {
-        00 {echo "Windows Domain Functional Level: Windows 2000 Native"}
-        01 {echo "Windows Domain Functional Level: Windows 2000 Mixed"}
-        20 {echo "Windows Domain Functional Level: Windows 2003"}
-        30 {echo "Windows Domain Functional Level: Windows 2008"}
-        40 {echo "Windows Domain Functional Level: Windows 2008 R2"}
-        50 {echo "Windows Domain Functional Level: Windows 2012"}
-        60 {echo "Windows Domain Functional Level: Windows 2012 R2"}
-        70 {echo "Windows Domain Functional Level: Windows 2016"}
-        80 {echo "Windows Domain Functional Level: Windows 2019"}
+        00 {echo "Windows Domain Functional Level: Windows Server 2000 Native"}
+        01 {echo "Windows Domain Functional Level: Windows Server 2000 Mixed"}
+        20 {echo "Windows Domain Functional Level: Windows Server 2003"}
+        30 {echo "Windows Domain Functional Level: Windows Server 2008"}
+        40 {echo "Windows Domain Functional Level: Windows Server 2008 R2"}
+        50 {echo "Windows Domain Functional Level: Windows Server 2012"}
+        60 {echo "Windows Domain Functional Level: Windows Server 2012 R2"}
+        70 {echo "Windows Domain Functional Level: Windows Server 2016"}
+        100 {echo "Windows Domain Functional Level: Windows Server 2025"}
             }                
         }
     else {
@@ -4599,15 +4600,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
             $Server = $item.split("|")[0]
             $DFLevel = $item.split("|")[1]
             switch ($DFLevel) {            
-                00 {echo "Windows Domain Functional Level: Windows 2000 Native ($Server)"}
-                01 {echo "Windows Domain Functional Level: Windows 2000 Mixed ($Server)"}
-                20 {echo "Windows Domain Functional Level: Windows 2003 ($Server)"}
-                30 {echo "Windows Domain Functional Level: Windows 2008 ($Server)"}
-                40 {echo "Windows Domain Functional Level: Windows 2008 R2 ($Server)"}
-                50 {echo "Windows Domain Functional Level: Windows 2012 ($Server)"}
-                60 {echo "Windows Domain Functional Level: Windows 2012 R2 ($Server)"}
-                70 {echo "Windows Domain Functional Level: Windows 2016 ($Server)"}
-                80 {echo "Windows Domain Functional Level: Windows 2019 ($Server)"}
+                00 {echo "Windows Domain Functional Level: Windows Server 2000 Native ($Server)"}
+                01 {echo "Windows Domain Functional Level: Windows Server 2000 Mixed ($Server)"}
+                20 {echo "Windows Domain Functional Level: Windows Server 2003 ($Server)"}
+                30 {echo "Windows Domain Functional Level: Windows Server 2008 ($Server)"}
+                40 {echo "Windows Domain Functional Level: Windows Server 2008 R2 ($Server)"}
+                50 {echo "Windows Domain Functional Level: Windows Server 2012 ($Server)"}
+                60 {echo "Windows Domain Functional Level: Windows Server 2012 R2 ($Server)"}
+                70 {echo "Windows Domain Functional Level: Windows Server 2016 ($Server)"}
+                100 {echo "Windows Domain Functional Level: Windows Server 2025 ($Server)"}
                 }
             }
         }
@@ -4810,6 +4811,7 @@ else {
 
         #$SQL_Instance_Properties.PatchLevel.split(".")[0]
         Switch ($SQL_Instance_Properties.PatchLevel.split(".")[0]) {
+            "16" {$ReturnMsg = "Version: 2022 - "+$SQL_Instance_Properties.Edition+" installed"}
             "15" {$ReturnMsg = "Version: 2019 - "+$SQL_Instance_Properties.Edition+" installed"}
             "14" {$ReturnMsg = "Version: 2017 - "+$SQL_Instance_Properties.Edition+" installed"}
             "13" {$ReturnMsg = "Version: 2016 - "+$SQL_Instance_Properties.Edition+" installed"}
@@ -4824,6 +4826,7 @@ else {
             "9" {$ReturnMsg = "Version: 2005 - "+$SQL_Instance_Properties.Edition+" installed"}
             "8" {$ReturnMsg = "Version: 2000 - "+$SQL_Instance_Properties.Edition+" installed"}
             "7" {$ReturnMsg = "Version: 7.0 - "+$SQL_Instance_Properties.Edition+" installed"}
+	    Default {$ReturnMsg = "Version: "+$SQL_Instance_Properties.PatchLevel+" - "+$SQL_Instance_Properties.Edition+" installed"}
             }
         $ReturnValue += ACreate-TestResult "SQL Server" $ReturnMsg $true    
         }
