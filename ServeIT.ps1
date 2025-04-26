@@ -4826,7 +4826,7 @@ else {
             "9" {$ReturnMsg = "Version: 2005 - "+$SQL_Instance_Properties.Edition+" installed"}
             "8" {$ReturnMsg = "Version: 2000 - "+$SQL_Instance_Properties.Edition+" installed"}
             "7" {$ReturnMsg = "Version: 7.0 - "+$SQL_Instance_Properties.Edition+" installed"}
-	    Default {$ReturnMsg = "Version: "$SQL_Instance_Properties.PatchLevel+" - "+$SQL_Instance_Properties.Edition+" installed"}
+	    Default {$ReturnMsg = "Version: "+$SQL_Instance_Properties.PatchLevel+" - "+$SQL_Instance_Properties.Edition+" installed"}
             }
         $ReturnValue += ACreate-TestResult "SQL Server" $ReturnMsg $true    
         }
