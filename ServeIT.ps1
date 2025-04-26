@@ -4516,15 +4516,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
 
         if ($FFLevel_Status_Ok) {
             switch ($AD_Forest_Func_Level.trim()) {
-                0 {echo "Windows Forest Functional Level: Windows 2000"}
-                1 {echo "Windows Forest Functional Level: Windows 2003 interim"}
-                2 {echo "Windows Forest Functional Level: Windows 2003"}
-                3 {echo "Windows Forest Functional Level: Windows 2008"}
-                4 {echo "Windows Forest Functional Level: Windows 2008 R2"}
-                5 {echo "Windows Forest Functional Level: Windows 2012"}
-                6 {echo "Windows Forest Functional Level: Windows 2012 R2"}
-                7 {echo "Windows Forest Functional Level: Windows 2016"}
-                8 {echo "Windows Forest Functional Level: Windows 2019"}
+                0 {echo "Windows Forest Functional Level: Windows Server 2000"}
+                1 {echo "Windows Forest Functional Level: Windows Server 2003 interim"}
+                2 {echo "Windows Forest Functional Level: Windows Server 2003"}
+                3 {echo "Windows Forest Functional Level: Windows Server 2008"}
+                4 {echo "Windows Forest Functional Level: Windows Server 2008 R2"}
+                5 {echo "Windows Forest Functional Level: Windows Server 2012"}
+                6 {echo "Windows Forest Functional Level: Windows Server 2012 R2"}
+                7 {echo "Windows Forest Functional Level: Windows Server 2016"}
+                10 {echo "Windows Forest Functional Level: Windows Server 2025"}
                 }                
             }
         else {
@@ -4532,15 +4532,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
                 $Server = $item.split("|")[0]
                 $FFLevel = $item.split("|")[1]
                 switch ($FFLevel) {            
-                    0 {echo "Windows Forest Functional Level: Windows 2000 ($Server)"}
-                    1 {echo "Windows Forest Functional Level: Windows 2003 interim ($Server)"}
-                    2 {echo "Windows Forest Functional Level: Windows 2003 ($Server)"}
-                    3 {echo "Windows Forest Functional Level: Windows 2008 ($Server)"}
-                    4 {echo "Windows Forest Functional Level: Windows 2008 R2 ($Server)"}
-                    5 {echo "Windows Forest Functional Level: Windows 2012 ($Server)"}
-                    6 {echo "Windows Forest Functional Level: Windows 2012 R2 ($Server)"}
-                    7 {echo "Windows Forest Functional Level: Windows 2016 ($Server)"}
-                    8 {echo "Windows Forest Functional Level: Windows 2019 ($Server)"}
+                    0 {echo "Windows Forest Functional Level: Windows Server 2000"}
+                    1 {echo "Windows Forest Functional Level: Windows Server 2003 interim"}
+                    2 {echo "Windows Forest Functional Level: Windows Server 2003"}
+                    3 {echo "Windows Forest Functional Level: Windows Server 2008"}
+                    4 {echo "Windows Forest Functional Level: Windows Server 2008 R2"}
+                    5 {echo "Windows Forest Functional Level: Windows Server 2012"}
+                    6 {echo "Windows Forest Functional Level: Windows Server 2012 R2"}
+                    7 {echo "Windows Forest Functional Level: Windows Server 2016"}
+                    10 {echo "Windows Forest Functional Level: Windows Server 2025"}
                     }
                 }
             }
@@ -4584,15 +4584,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
 
     if ($DFLevel_Status_Ok) {
     switch ($AD_Domain_Func_Level.trim()) {
-        00 {echo "Windows Domain Functional Level: Windows 2000 Native"}
-        01 {echo "Windows Domain Functional Level: Windows 2000 Mixed"}
-        20 {echo "Windows Domain Functional Level: Windows 2003"}
-        30 {echo "Windows Domain Functional Level: Windows 2008"}
-        40 {echo "Windows Domain Functional Level: Windows 2008 R2"}
-        50 {echo "Windows Domain Functional Level: Windows 2012"}
-        60 {echo "Windows Domain Functional Level: Windows 2012 R2"}
-        70 {echo "Windows Domain Functional Level: Windows 2016"}
-        80 {echo "Windows Domain Functional Level: Windows 2019"}
+        00 {echo "Windows Domain Functional Level: Windows Server 2000 Native"}
+        01 {echo "Windows Domain Functional Level: Windows Server 2000 Mixed"}
+        20 {echo "Windows Domain Functional Level: Windows Server 2003"}
+        30 {echo "Windows Domain Functional Level: Windows Server 2008"}
+        40 {echo "Windows Domain Functional Level: Windows Server 2008 R2"}
+        50 {echo "Windows Domain Functional Level: Windows Server 2012"}
+        60 {echo "Windows Domain Functional Level: Windows Server 2012 R2"}
+        70 {echo "Windows Domain Functional Level: Windows Server 2016"}
+        100 {echo "Windows Domain Functional Level: Windows Server 2025"}
             }                
         }
     else {
@@ -4600,15 +4600,15 @@ foreach ($DC in $domain.DomainControllers | sort) {
             $Server = $item.split("|")[0]
             $DFLevel = $item.split("|")[1]
             switch ($DFLevel) {            
-                00 {echo "Windows Domain Functional Level: Windows 2000 Native ($Server)"}
-                01 {echo "Windows Domain Functional Level: Windows 2000 Mixed ($Server)"}
-                20 {echo "Windows Domain Functional Level: Windows 2003 ($Server)"}
-                30 {echo "Windows Domain Functional Level: Windows 2008 ($Server)"}
-                40 {echo "Windows Domain Functional Level: Windows 2008 R2 ($Server)"}
-                50 {echo "Windows Domain Functional Level: Windows 2012 ($Server)"}
-                60 {echo "Windows Domain Functional Level: Windows 2012 R2 ($Server)"}
-                70 {echo "Windows Domain Functional Level: Windows 2016 ($Server)"}
-                80 {echo "Windows Domain Functional Level: Windows 2019 ($Server)"}
+                00 {echo "Windows Domain Functional Level: Windows Server 2000 Native"}
+                01 {echo "Windows Domain Functional Level: Windows Server 2000 Mixed"}
+                20 {echo "Windows Domain Functional Level: Windows Server 2003"}
+                30 {echo "Windows Domain Functional Level: Windows Server 2008"}
+                40 {echo "Windows Domain Functional Level: Windows Server 2008 R2"}
+                50 {echo "Windows Domain Functional Level: Windows Server 2012"}
+                60 {echo "Windows Domain Functional Level: Windows Server 2012 R2"}
+                70 {echo "Windows Domain Functional Level: Windows Server 2016"}
+                100 {echo "Windows Domain Functional Level: Windows Server 2025"}
                 }
             }
         }
