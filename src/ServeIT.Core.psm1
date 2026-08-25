@@ -342,7 +342,8 @@ function ConvertTo-SVHtml {
         $objectValues = @($group.Group | Where-Object { $null -ne $_.Value -and ($_.Value -is [pscustomobject] -or $_.Value -is [hashtable]) })
         $allValuesAreObjects = $objectValues.Count -eq @($group.Group).Count -and $objectValues.Count -gt 0
         $valueProperties = @($objectValues | ForEach-Object { $_.Value.PSObject.Properties.Name } | Sort-Object -Unique)
-        $heading = if ($GroupByServer) { $group.Name } else { Get-SVCheckName $group.Name }
+        $groupCheck = if ($group.Group.Count -gt 0) { [string]$group.Group[0].Check } else { [string]$group.Name }
+        $heading = if ($GroupByServer) { $group.Name } else { Get-SVCheckName $groupCheck }
         $columns = if ($allValuesAreObjects -and $valueProperties.Count -gt 0) {
             @('Server', 'Item') + $valueProperties + @('Status')
         } else {
@@ -350,7 +351,7 @@ function ConvertTo-SVHtml {
         }
         $headerHtml = ($columns | ForEach-Object { "<th>$(& $escape $_)</th>" }) -join ''
         $escapedHeading = & $escape $heading
-        [void]$rows.AppendLine("<section class='group' data-check='$(& $escape $group.Name)'><h2 class='check-title'>$escapedHeading</h2><table><caption>$escapedHeading</caption><thead><tr>$headerHtml</tr></thead><tbody>")
+        [void]$rows.AppendLine("<section class='group' data-check='$(& $escape $groupCheck)'><h2 class='check-title'>$escapedHeading</h2><table><caption>$escapedHeading</caption><thead><tr>$headerHtml</tr></thead><tbody>")
         foreach ($result in @($group.Group)) {
             $status = if ($result.Warning) { 'warning' } elseif ($result.Passed) { 'pass' } else { 'fail' }
             $statusText = if ($result.Warning) { 'WARNING' } elseif ($result.Passed) { 'PASS' } else { 'FAIL' }
