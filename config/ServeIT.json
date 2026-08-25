@@ -1,0 +1,523 @@
+{
+  "computers": [
+    "localhost"
+  ],
+  "serverDiscovery": {
+    "enabled": true,
+    "searchBase": null
+  },
+  "defragCheckEnabled": false,
+  "exchangeChecks": [
+    "Get-SVExchangeMailboxSizes",
+    "Get-SVExchangeVersion",
+    "Get-SVMailboxDbBackup",
+    "Get-SVMailboxDbSize"
+  ],
+  "helperFunctions": [
+    "Get-SVVeeamVMstatusFailed",
+    "Get-SVVeeamVMstatusSuccess",
+    "Get-SVVeeam11JobStatus",
+    "Get-SVVeeamJobStatus",
+    "Get-SVVeeamPsSnapin",
+    "Get-SVBackupExec2",
+    "Get-SVBackupExec4"
+  ],
+  "domainChecks": [
+    "Get-SVAdRecycleBin",
+    "Get-SVLdapssl",
+    "Get-SVWindowsDomainFunctionalLevel",
+    "Get-SVWindowsForestFunctionalLevel",
+    "Get-SVFsmo",
+    "Get-SVPdc",
+    "Get-SVForwarders",
+    "Get-SVServers2",
+    "Get-SVServers",
+    "Get-SVServersConfig",
+    "Get-SVAuthorisedServers",
+    "Get-SVExchangeserver",
+    "Import-SVPSRemotingGPO"
+  ],
+  "priorityChecks": [
+    "Get-SVWindowsServices",
+    "Get-SVAcronisBackup",
+    "Get-SVCarboniteBackup",
+    "Get-SVArcservBackup",
+    "Get-SVOoDriveAdBackup",
+    "Get-SVVeeamBackup2",
+    "Get-SVVeeamEndpointBackup",
+    "Get-SVBackupExec",
+    "Get-SVMozyBackup",
+    "Get-SVScheduledTasks",
+    "Get-SVAntiSpam",
+    "Get-SVAntiVirus",
+    "Get-SVNoInstalled",
+    "Get-SVSophos",
+    "Get-SVEpp",
+    "Get-SVEset",
+    "Get-SVWrsa",
+    "Get-SVMsse",
+    "Get-SVMcAfee",
+    "Get-SVSep",
+    "Get-SVTm",
+    "Get-SVWindowsUptime",
+    "Get-SVDiskspace"
+  ],
+  "checks": [
+    {
+      "id": "Get-SVVolumeHealth",
+      "name": "Volume Health",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVNpSextensionForMfa",
+      "name": "MFA PowerShell Extension",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVMembers",
+      "name": "Group Memberships",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckWindowsDefenderAtp",
+      "name": "Windows Defender ATP",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckWindowsUpdateStatus2",
+      "name": "Windows Update Status",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVComputerSid",
+      "name": "Computer Security Identifier",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVFortiClient",
+      "name": "FortiClient Antivirus",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVIPv6Settings",
+      "name": "IPv6 Settings",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVAllServersIPv6Address",
+      "name": "Server IPv6 Addresses",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckFsLogix",
+      "name": "FSLogix Configuration",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheck12Protocol",
+      "name": "TLS 1.2 Protocol",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckPowerPlan",
+      "name": "Power Plan",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckIPsecoffload",
+      "name": "IPsec Offload",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckSetting",
+      "name": "Network Adapter Settings",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckSettings",
+      "name": "System Settings",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckApcPowerChute",
+      "name": "APC PowerChute",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckEatonIntelligentPowerProtector",
+      "name": "Eaton Intelligent Power Protector",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckQueuing",
+      "name": "Network Adapter Queuing",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckRemoteDesktopConnectionManager",
+      "name": "Remote Desktop Connection Manager",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckCacheDb",
+      "name": "Cache Database",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheck4Tpm",
+      "name": "Trusted Platform Module",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckUefiSecureboot",
+      "name": "UEFI Secure Boot",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVReplicationHealth",
+      "name": "Replication Health",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckSmBv1",
+      "name": "SMBv1 Protocol",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVSignedOrSecureChannelCommunication",
+      "name": "Secure Channel Communication",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVAdRecycleBin",
+      "name": "Active Directory Recycle Bin",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVNla",
+      "name": "Network Level Authentication",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVLdapssl",
+      "name": "LDAP over SSL",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVServer",
+      "name": "Server Information",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVServerInstances",
+      "name": "Server Instances",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsBpa",
+      "name": "Windows Best Practices Analyzer",
+      "enabled": false
+    },
+    {
+      "id": "Get-SVConnectVersion",
+      "name": "Connect Application Version",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVReplicationMigrationState",
+      "name": "Replication Migration State",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsDomainFunctionalLevel",
+      "name": "Windows Domain Functional Level",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsForestFunctionalLevel",
+      "name": "Windows Forest Functional Level",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVReplicationStatus2",
+      "name": "Replication Status",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckWindowsDnsSettingsPerNic2",
+      "name": "DNS Settings per Network Adapter",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckWindowsDnsSettingsPerNic",
+      "name": "DNS Configuration per Network Adapter",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVUacLevel",
+      "name": "User Account Control Level",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCheckWindowsUpdateStatus",
+      "name": "Windows Update Health",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsUpdateSettings",
+      "name": "Windows Update Settings",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVFirewallProfile",
+      "name": "Windows Firewall Profiles",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVSnapshots",
+      "name": "Virtual Machine Snapshots",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVDomainAdmins",
+      "name": "Domain Administrators",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsServices",
+      "name": "Windows Services",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsTimeSource2",
+      "name": "Windows Time Source",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsTimeSource",
+      "name": "Windows Time Configuration",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsUpdateSetting",
+      "name": "Windows Update Policy",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWindowsUptime",
+      "name": "Server Uptime",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVAcronisBackup",
+      "name": "Acronis Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVJavaRte",
+      "name": "Java Runtime Environment",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVCarboniteBackup",
+      "name": "Carbonite Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVArcservBackup",
+      "name": "Arcserve Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVOoDriveAdBackup",
+      "name": "Online Drive Active Directory Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVVeeamBackup2",
+      "name": "Veeam Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVVeeamEndpointBackup",
+      "name": "Veeam Endpoint Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVBackupExec",
+      "name": "Backup Exec",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVMozyBackup",
+      "name": "Mozy Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVAntiSpam",
+      "name": "Anti-Spam Protection",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVAntiVirus",
+      "name": "Antivirus Protection",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVNoInstalled",
+      "name": "Unapproved Software",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVSophos",
+      "name": "Sophos Antivirus",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVEpp",
+      "name": "ESET Protect Platform",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVEset",
+      "name": "ESET Antivirus",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWrsa",
+      "name": "Webroot SecureAnywhere",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVMsse",
+      "name": "Microsoft Security Essentials",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVMcAfee",
+      "name": "McAfee Antivirus",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVSep",
+      "name": "Symantec Endpoint Protection",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVTm",
+      "name": "Trend Micro Antivirus",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVScheduledTasks",
+      "name": "Scheduled Tasks",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVOsLanguage",
+      "name": "Operating System Language",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVOsVersion",
+      "name": "Operating System Version",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVServersCheck",
+      "name": "Server Connectivity",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVWinsServers",
+      "name": "WINS Servers",
+      "enabled": true
+    },
+    {
+      "id": "Invoke-SVTracert",
+      "name": "Network Route Trace",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVFsmo",
+      "name": "FSMO Role Health",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVPdc",
+      "name": "Primary Domain Controller",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVForwarders",
+      "name": "DNS Forwarders",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVServers2",
+      "name": "Additional Server Checks",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVServers",
+      "name": "Server Inventory",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVServersConfig",
+      "name": "Server Configuration",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVAuthorisedServers",
+      "name": "Authorized Servers",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVDiskspace",
+      "name": "Disk Space",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVDefragAnalysis",
+      "name": "Disk Fragmentation Analysis",
+      "enabled": true
+    },
+    {
+      "id": "Resolve-SVDnsName",
+      "name": "DNS Name Resolution",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVExchangeMailboxSizes",
+      "name": "Exchange Mailbox Sizes",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVExchangeVersion",
+      "name": "Exchange Version",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVMailboxDbBackup",
+      "name": "Exchange Mailbox Database Backup",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVMailboxDbSize",
+      "name": "Exchange Mailbox Database Sizes",
+      "enabled": true
+    },
+    {
+      "id": "Get-SVExchangeserver",
+      "name": "Exchange Server Health",
+      "enabled": true
+    },
+    {
+      "id": "Import-SVPSRemotingGPO",
+      "name": "PowerShell Remoting Group Policy",
+      "enabled": true
+    }
+  ]
+}
+
