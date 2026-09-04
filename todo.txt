@@ -2,3 +2,4 @@ titels van checks ontbreken in html
 importjsonresult raport maken geeft The property 'ComputerName' cannot be found on this object. Verify that the property exists. en nog een andere fout
 backup exec is to refactored
 Checks fintunen
+Volume Health is uitgeschakeld omdat dit niet werkt (maar ook niet in het laatste legacy ServeIT Script)
