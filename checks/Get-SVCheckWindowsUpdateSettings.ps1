@@ -1,4 +1,4 @@
-function Get-SVWindowsUpdateSettings($server) {
+function Get-SVCheckWindowsUpdateSettings($server) {
 
     $hklm = 2147483650
     $key = "SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\"

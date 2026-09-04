@@ -60,6 +60,7 @@
     "Get-SVBackupExec",
     "Get-SVMozyBackup",
     "Get-SVWindowsUptime",
+    "Get-SVCheckWindowsUpdateSchedule",
     "Get-SVDiskspace"
   ],
   "checks": [
@@ -79,9 +80,9 @@
       "enabled": true
     },
     {
-      "id": "Get-SVCheckWindowsUpdateStatus2",
-      "name": "Windows Update Status",
-      "enabled": true
+      "id": "Get-SVCheckWindowsUpdatePending",
+      "name": "Pending Windows Updates",
+      "enabled": false
     },
     {
       "id": "Get-SVComputerSid",
@@ -249,14 +250,14 @@
       "enabled": true
     },
     {
-      "id": "Get-SVCheckWindowsUpdateStatus",
-      "name": "Windows Update Health",
-      "enabled": true
+      "id": "Get-SVCheckWindowsUpdateHistory",
+      "name": "Failed/Queued Updates",
+      "enabled": false
     },
     {
-      "id": "Get-SVWindowsUpdateSettings",
+      "id": "Get-SVCheckWindowsUpdateSettings",
       "name": "Windows Update Settings",
-      "enabled": true
+      "enabled": false
     },
     {
       "id": "Get-SVFirewallProfile",
@@ -289,8 +290,8 @@
       "enabled": true
     },
     {
-      "id": "Get-SVWindowsUpdateSetting",
-      "name": "Windows Update Policy",
+      "id": "Get-SVCheckWindowsUpdateSchedule",
+      "name": "Automatic Updates Schedule",
       "enabled": true
     },
     {
@@ -465,4 +466,3 @@
     }
   ]
 }
-

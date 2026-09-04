@@ -1,4 +1,4 @@
-function Get-SVCheckWindowsUpdateStatus($server, $CheckFailedUpdates) {
+function Get-SVCheckWindowsUpdateHistory($server, $CheckFailedUpdates) {
     $FailedUpdates = @()
     $UniqueFailedUpdates = @()
     $SucceededUpdates = @()
@@ -14,15 +14,16 @@ function Get-SVCheckWindowsUpdateStatus($server, $CheckFailedUpdates) {
             }
     #>
 
-    $QueuedUpdates = Invoke-Command -ComputerName $server -ScriptBlock {
-        $updateObject = New-Object -ComObject Microsoft.Update.Session
-        $updateSearcher = $updateObject.CreateUpdateSearcher();
-        try {$searchResults = $updateSearcher.Search("IsInstalled=0");}
-        catch {
-            $exceptionExit = echo $_.tostring()
-            Return $exceptionExit
-            }
-        $searchResults.Updates.Count            
+    try {
+        $QueuedUpdates = Invoke-Command -ComputerName $server -ScriptBlock {
+            $updateObject = New-Object -ComObject Microsoft.Update.Session -ErrorAction Stop
+            $updateSearcher = $updateObject.CreateUpdateSearcher();
+            $searchResults = $updateSearcher.Search("IsInstalled=0");
+            $searchResults.Updates.Count
+            } -ErrorAction Stop
+        }
+    catch {
+        $QueuedUpdates = "Exception: " + $_.Exception.Message
         }
 
     if ($QueuedUpdates -match 'Exception from HRESULT:') {
@@ -31,12 +32,23 @@ function Get-SVCheckWindowsUpdateStatus($server, $CheckFailedUpdates) {
 
     if ($CheckFailedUpdates) {
 
-        $updates=Invoke-Command -ComputerName $server -ScriptBlock {
-            $UpdateSession = New-Object -ComObject "Microsoft.Update.Session"
-            $UpdateSearcher = $UpdateSession.CreateUpdateSearcher()
-            $historyCount = $UpdateSearcher.GetTotalHistoryCount()
-            $UpdateSearcher.QueryHistory(0, $historyCount) | Select-Object Date, @{name="Operation"; expression={switch($_.operation){1 {"Installation"}; 2 {"Uninstallation"}; 3 {"Other"}}}}, @{name="Status"; expression={switch($_.resultcode){1 {"In Progress"}; 2 {"Succeeded"}; 3 {"Succeeded With Errors"};4 {"Failed"}; 5 {"Aborted"} } } }, Title
+        if ($QueuedUpdates -match '^Exception: ') {
+            $updates = @()
+        }
+        else {
+            try {
+                $updates=Invoke-Command -ComputerName $server -ScriptBlock {
+                    $UpdateSession = New-Object -ComObject "Microsoft.Update.Session" -ErrorAction Stop
+                    $UpdateSearcher = $UpdateSession.CreateUpdateSearcher()
+                    $historyCount = $UpdateSearcher.GetTotalHistoryCount()
+                    $UpdateSearcher.QueryHistory(0, $historyCount) | Select-Object Date, @{name="Operation"; expression={switch($_.operation){1 {"Installation"}; 2 {"Uninstallation"}; 3 {"Other"}}}}, @{name="Status"; expression={switch($_.resultcode){1 {"In Progress"}; 2 {"Succeeded"}; 3 {"Succeeded With Errors"};4 {"Failed"}; 5 {"Aborted"} } } }, Title
+                    } -ErrorAction Stop
             }
+            catch {
+                $updates = @()
+                $QueuedUpdates = "Exception: " + $_.Exception.Message
+            }
+        }
             #$SearchResult = $UpdateSearcher.Search("IsInstalled=0 and Type='Software'")
             #$SearchResult = $Searcher.Search("IsAssigned=1 and IsHidden=0 and IsInstalled=0")    
 
