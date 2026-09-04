@@ -20,7 +20,19 @@
     "Get-SVVeeamJobStatus",
     "Get-SVVeeamPsSnapin",
     "Get-SVBackupExec2",
-    "Get-SVBackupExec4"
+    "Get-SVBackupExec4",
+    "Get-SVNoInstalled",
+    "Get-SVSophos",
+    "Get-SVEpp",
+    "Get-SVEset",
+    "Get-SVWrsa",
+    "Get-SVMsse",
+    "Get-SVMcAfee",
+    "Get-SVSep",
+    "Get-SVTm",
+    "Get-SVFortiClient",
+    "Get-SVCheckWindowsDefenderAtp",
+    "Get-SVAV_NABLEAV"
   ],
   "domainChecks": [
     "Get-SVAdRecycleBin",
@@ -47,18 +59,6 @@
     "Get-SVVeeamEndpointBackup",
     "Get-SVBackupExec",
     "Get-SVMozyBackup",
-    "Get-SVScheduledTasks",
-    "Get-SVAntiSpam",
-    "Get-SVAntiVirus",
-    "Get-SVNoInstalled",
-    "Get-SVSophos",
-    "Get-SVEpp",
-    "Get-SVEset",
-    "Get-SVWrsa",
-    "Get-SVMsse",
-    "Get-SVMcAfee",
-    "Get-SVSep",
-    "Get-SVTm",
     "Get-SVWindowsUptime",
     "Get-SVDiskspace"
   ],
@@ -79,11 +79,6 @@
       "enabled": true
     },
     {
-      "id": "Get-SVCheckWindowsDefenderAtp",
-      "name": "Windows Defender ATP",
-      "enabled": true
-    },
-    {
       "id": "Get-SVCheckWindowsUpdateStatus2",
       "name": "Windows Update Status",
       "enabled": true
@@ -91,11 +86,6 @@
     {
       "id": "Get-SVComputerSid",
       "name": "Computer Security Identifier",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVFortiClient",
-      "name": "FortiClient Antivirus",
       "enabled": true
     },
     {
@@ -361,51 +351,6 @@
     {
       "id": "Get-SVAntiVirus",
       "name": "Antivirus Protection",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVNoInstalled",
-      "name": "Unapproved Software",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVSophos",
-      "name": "Sophos Antivirus",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVEpp",
-      "name": "ESET Protect Platform",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVEset",
-      "name": "ESET Antivirus",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVWrsa",
-      "name": "Webroot SecureAnywhere",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVMsse",
-      "name": "Microsoft Security Essentials",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVMcAfee",
-      "name": "McAfee Antivirus",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVSep",
-      "name": "Symantec Endpoint Protection",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVTm",
-      "name": "Trend Micro Antivirus",
       "enabled": true
     },
     {

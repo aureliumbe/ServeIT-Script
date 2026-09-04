@@ -72,6 +72,8 @@ Veeam is grouped like the original script: only `Get-SVVeeamBackup2` and `Get-SV
 
 Backup Exec follows the same original boundary: only `Get-SVBackupExec` is a standalone check. `Get-SVBackupExec2` and `Get-SVBackupExec4` are helper functions used by the main check and are listed in `helperFunctions`.
 
+Antivirus follows the original dispatcher boundary as well: only `Get-SVAntiVirus` is a standalone check. It detects the running product and invokes the matching product-specific helper; the product helpers are listed in `helperFunctions` and are not run independently.
+
 Functions that are intentionally not standalone checks are listed in `helperFunctions` in `config\ServeIT.json`. They do not trigger the unregistered-script warning. A configured check with `enabled: false` still reports a separate disabled-check warning.
 
 Exchange checks are listed in `exchangeChecks`. The runner discovers Exchange servers from the AD Exchange configuration container, intersects them with reachable servers, and runs those checks only against the resulting Exchange server list. The selected servers are recorded as `ExchangeServers` in the JSON report.
