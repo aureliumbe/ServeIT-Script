@@ -1,4 +1,5 @@
 titels van checks ontbreken in html
+NPS Extention wordt niet gedetecteerd
 importjsonresult raport maken geeft The property 'ComputerName' cannot be found on this object. Verify that the property exists. en nog een andere fout
 Checks fintunen
 Volume Health is uitgeschakeld omdat dit niet werkt (maar ook niet in het laatste legacy ServeIT Script)

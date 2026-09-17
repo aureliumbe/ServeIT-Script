@@ -8,7 +8,7 @@ $Latest_Version = ""
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 try {
-    $Latest_Version = (Invoke-WebRequest https://docs.microsoft.com/en-us/sysinternals/downloads/rdcman).content -replace '(?ms).*Remote Desktop Connection Manager v(\d+\.\d+).*','$1'
+    $Latest_Version = (Invoke-WebRequest https://docs.microsoft.com/en-us/sysinternals/downloads/rdcman -UseBasicParsing).content -replace '(?ms).*Remote Desktop Connection Manager v(\d+\.\d+).*','$1'
     }
 Catch
     {
@@ -19,7 +19,7 @@ Catch
 #$Latest_Version = (Invoke-WebRequest https://docs.microsoft.com/en-us/sysinternals/downloads/rdcman).content -replace '(?ms).*Remote Desktop Connection Manager v(\d+\.\d+).*','$1'
 
 $processes = get-wmiobject -class "Win32_Process" -namespace "root\cimV2" -computername $comp -filter "Name like 'rdcman.exe'" -ErrorAction Continue
-if ($processes -eq $null) 
+if ($null -eq $processes) 
     {
     $Filename = "\Program Files (x86)\Microsoft\Remote Desktop Connection Manager\RDCMan.exe"    
     if ( Test-Path \\$comp\c$\$Filename ) {
