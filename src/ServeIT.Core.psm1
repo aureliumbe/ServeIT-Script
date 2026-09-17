@@ -10,6 +10,7 @@ function New-SVResult {
         [bool]$Warning = $false
     )
     [pscustomobject]@{
+        Check = $Check
         Item = $Item
         Value = $Value
         Passed = $Passed
