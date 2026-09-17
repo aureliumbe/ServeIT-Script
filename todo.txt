@@ -1,4 +1,9 @@
 NPS Extention wordt niet gedetecteerd
 Check in een omgeving waar nog een exchange server staat
 Checks fintunen
+- Antivirus (fit-rd-02 geeft een fout omdat de version niet kan worden opgehaald)
+- scheduled tasks fit-xpl-01 faalt, maar mss faalt die ook wel in het klassieke serveit script, want daar is net ervoor ook een error
+- Hyper-V snapshots toont snapshots voor de Hyper-V (waar hij ze vindt) maar zou eigenlijk de naam van de server en host moeten geven (ook fout in legacy script)
+- DHCP authorized Servers ontbreekt -> wss foute naam ofzo, verder uit te zoeken
+- Alle checks die in het legacy script volgen onder DHCP authorized servers nog na te kijken. Daar loopt nog vanalles mis
 Volume Health is uitgeschakeld omdat dit niet werkt (maar ook niet in het laatste legacy ServeIT Script)
