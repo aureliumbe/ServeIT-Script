@@ -71,7 +71,7 @@
     },
     {
       "id": "Get-SVNpSextensionForMfa",
-      "name": "MFA PowerShell Extension",
+      "name": "MFA NPS Extension",
       "enabled": true
     },
     {
