@@ -2,6 +2,7 @@ NPS Extention wordt niet gedetecteerd
 Check in een omgeving waar nog een exchange server staat
 Checks fintunen
 - scheduled tasks staat niet bij de prioritychecks
+- Veeam check mislukt (The variable '$VeeamVMjobStatus' cannot be retrieved because it has not been set.)
 - Antivirus (fit-rd-02 geeft een fout omdat de version niet kan worden opgehaald)
 - scheduled tasks fit-xpl-01 faalt, maar mss faalt die ook wel in het klassieke serveit script, want daar is net ervoor ook een error
 - Hyper-V snapshots toont snapshots voor de Hyper-V (waar hij ze vindt) maar zou eigenlijk de naam van de server en host moeten geven (ook fout in legacy script)
