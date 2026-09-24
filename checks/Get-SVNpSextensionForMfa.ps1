@@ -17,7 +17,7 @@ foreach ($process in $processes) {
             # Get the latest version of MFA NPS Extension
 
             $web = New-Object Net.WebClient
-            $NPSextensionLatestVersionRawText = (Invoke-WebRequest "https://www.microsoft.com/en-us/download/details.aspx?id=54688").content
+            $NPSextensionLatestVersionRawText = (Invoke-WebRequest "https://www.microsoft.com/en-us/download/details.aspx?id=54688" -UseBasicParsing).content
 
             # Compare if the current version match the latest version
 
