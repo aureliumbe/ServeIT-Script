@@ -59,6 +59,8 @@
     "Get-SVVeeamEndpointBackup",
     "Get-SVBackupExec",
     "Get-SVMozyBackup",
+    "Get-SVScheduledTasks",
+    "Get-SVConnectVersion",
     "Get-SVWindowsUptime",
     "Get-SVCheckWindowsUpdateSchedule",
     "Get-SVDiskspace"
