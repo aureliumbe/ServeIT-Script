@@ -9,3 +9,6 @@ Checks fintunen
 - DHCP authorized Servers ontbreekt -> wss foute naam ofzo, verder uit te zoeken
 - Alle checks die in het legacy script volgen onder DHCP authorized servers nog na te kijken. Daar loopt nog vanalles mis
 Volume Health is uitgeschakeld omdat dit niet werkt (maar ook niet in het laatste legacy ServeIT Script)
+HTML rapport is dubbel
+from json report werkt niet meer
+HTML report should be mentionend in the end
