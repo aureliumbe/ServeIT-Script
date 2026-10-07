@@ -1,4 +1,4 @@
-function Get-SVServerInstances($comp) {
+function Get-SVSqlServerInstances($comp) {
 ###########################################
 $ReturnValue = @()
 

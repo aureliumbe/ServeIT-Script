@@ -1,4 +1,4 @@
-function Get-SVServers2(){
+function Get-SVDnsServers(){
     $ReturnValue = @()
     $ns = nslookup $domain
     $ns = "" + $ns

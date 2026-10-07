@@ -1,4 +1,4 @@
-function Get-SVServersCheck($server) {
+function Get-SVWinsServerHealth($server) {
 
 $ReturnValue = @()
 $WINS_Servers1 = @()

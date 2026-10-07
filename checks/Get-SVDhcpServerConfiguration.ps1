@@ -1,4 +1,4 @@
-function Get-SVServersConfig(){
+function Get-SVDhcpServerConfiguration(){
     $ReturnValue = @()
     $ReturnMsg = ""
     $SearchBase="CN=CONFIGURATION,"+$LdapDomain

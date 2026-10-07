@@ -42,9 +42,8 @@
     "Get-SVFsmo",
     "Get-SVPdc",
     "Get-SVForwarders",
-    "Get-SVServers2",
-    "Get-SVServers",
-    "Get-SVServersConfig",
+    "Get-SVDnsServers",
+    "Get-SVDhcpServerConfiguration",
     "Get-SVAuthorisedServers",
     "Get-SVExchangeserver",
     "Import-SVPSRemotingGPO"
@@ -198,13 +197,8 @@
       "enabled": true
     },
     {
-      "id": "Get-SVServer",
-      "name": "Server Information",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVServerInstances",
-      "name": "Server Instances",
+      "id": "Get-SVSqlServerInstances",
+      "name": "SQL Server Instances",
       "enabled": true
     },
     {
@@ -373,8 +367,8 @@
       "enabled": true
     },
     {
-      "id": "Get-SVServersCheck",
-      "name": "Server Connectivity",
+      "id": "Get-SVWinsServerHealth",
+      "name": "WINS Server Health",
       "enabled": true
     },
     {
@@ -403,18 +397,13 @@
       "enabled": true
     },
     {
-      "id": "Get-SVServers2",
-      "name": "Additional Server Checks",
+      "id": "Get-SVDnsServers",
+      "name": "DNS Server Connectivity",
       "enabled": true
     },
     {
-      "id": "Get-SVServers",
-      "name": "Server Inventory",
-      "enabled": true
-    },
-    {
-      "id": "Get-SVServersConfig",
-      "name": "Server Configuration",
+      "id": "Get-SVDhcpServerConfiguration",
+      "name": "DHCP Server Configuration",
       "enabled": true
     },
     {
