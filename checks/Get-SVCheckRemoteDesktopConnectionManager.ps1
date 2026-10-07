@@ -49,7 +49,7 @@ if ($null -eq $processes)
                 }
             }
         else {
-            $ReturnValue += New-SVTestResult "RD Connection Manager" "Not Installed" $true
+            $ReturnValue += New-SVTestResult "RD Connection Manager" "Not Detected" $true
             }
         }
         
