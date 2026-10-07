@@ -232,11 +232,6 @@
       "enabled": true
     },
     {
-      "id": "Get-SVCheckWindowsDnsSettingsPerNic2",
-      "name": "DNS Settings per Network Adapter",
-      "enabled": true
-    },
-    {
       "id": "Get-SVCheckWindowsDnsSettingsPerNic",
       "name": "DNS Configuration per Network Adapter",
       "enabled": true
