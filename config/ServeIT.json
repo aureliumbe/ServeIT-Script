@@ -41,10 +41,10 @@
     "Get-SVWindowsForestFunctionalLevel",
     "Get-SVFsmo",
     "Get-SVPdc",
+    "Get-SVAuthorisedServers",
     "Get-SVForwarders",
     "Get-SVDnsServers",
     "Get-SVDhcpServerConfiguration",
-    "Get-SVAuthorisedServers",
     "Get-SVExchangeserver",
     "Import-SVPSRemotingGPO"
   ],
