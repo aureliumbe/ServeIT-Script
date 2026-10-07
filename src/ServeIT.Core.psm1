@@ -19,6 +19,19 @@ function New-SVResult {
     }
 }
 
+function ConvertTo-SVDisplayValue {
+    param([AllowNull()]$Value)
+    if ($null -eq $Value) { return '' }
+    if ($Value -is [string] -or $Value -is [ValueType]) { return [string]$Value }
+    if ($Value -is [array]) {
+        $values = @($Value)
+        if (@($values | Where-Object { $null -ne $_ -and $_ -isnot [string] -and $_ -isnot [ValueType] }).Count -eq 0) {
+            return ($values | ForEach-Object { [string]$_ }) -join ', '
+        }
+    }
+    return ($Value | ConvertTo-Json -Compress -Depth 10)
+}
+
 function Write-SVResult {
     param([Parameter(Mandatory)]$Result, [string]$ComputerName = '-')
     $server = $ComputerName
@@ -33,11 +46,7 @@ function Write-SVResult {
         $part = $parts[1]
     }
     $status = if ($Result.Warning) { 'WARNING' } elseif ($Result.Passed) { 'PASS' } else { 'FAIL' }
-    $value = if ($Result.Value -is [string] -or $Result.Value -is [ValueType]) {
-        [string]$Result.Value
-    } else {
-        $Result.Value | ConvertTo-Json -Compress -Depth 10
-    }
+    $value = ConvertTo-SVDisplayValue $Result.Value
     $color = if ($Result.Warning) { 'Yellow' } elseif ($Result.Passed) { 'Green' } else { 'Red' }
     Write-Host ('{0,-24} {1,-42} {2,-50} {3}' -f $server, $part, $value, $status) -ForegroundColor $color
 }
@@ -362,7 +371,7 @@ function ConvertTo-SVHtml {
         foreach ($result in @($group.Group)) {
             $status = if ($result.Warning) { 'warning' } elseif ($result.Passed) { 'pass' } else { 'fail' }
             $statusText = if ($result.Warning) { 'WARNING' } elseif ($result.Passed) { 'PASS' } else { 'FAIL' }
-            $value = if ($result.Value -is [string] -or $result.Value -is [ValueType]) { [string]$result.Value } else { $result.Value | ConvertTo-Json -Compress -Depth 10 }
+            $value = ConvertTo-SVDisplayValue $result.Value
             $server = Get-SVResultServer $result
             $item = Get-SVResultItem $result
             if ($allValuesAreObjects -and $valueProperties.Count -gt 0) {
