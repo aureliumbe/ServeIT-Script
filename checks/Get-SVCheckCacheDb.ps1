@@ -2,11 +2,11 @@ function Get-SVCheckCacheDb($comp){
 $ReturnValue = @()
 
 $processes = get-wmiobject -class "Win32_Process" -namespace "root\cimV2" -computername $comp -filter "Name like 'cservice.exe'" -ErrorAction Continue
-if ($processes -eq $null) 
+if ($null -eq $processes) 
     {
     #echo "Caché Database Not Installed"
-    $ReturnValue += New-SVTestResult "Caché Database" "Not Installed" $true
-    return New-SVTest "Caché Database" $ReturnValue
+    $ReturnValue += New-SVTestResult "Cache Database" "Not Detected" $true
+    return New-SVTest "Cache Database" $ReturnValue
     }
 else {
     $Filename = $Processes.ExecutablePath
@@ -15,5 +15,5 @@ else {
     
     $ReturnValue += New-SVTestResult "Caché Database" "Version: $FileVersion Installed" $true    
     }
-return New-SVTest "Caché Database" $ReturnValue
+return New-SVTest "Cache Database" $ReturnValue
 }
