@@ -60,6 +60,7 @@
     "Get-SVBackupExec",
     "Get-SVMozyBackup",
     "Get-SVScheduledTasks",
+    "Get-SVAntiVirus",
     "Get-SVConnectVersion",
     "Get-SVWindowsUptime",
     "Get-SVCheckWindowsUpdateSchedule",
