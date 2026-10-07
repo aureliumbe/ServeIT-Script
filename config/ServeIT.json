@@ -45,8 +45,7 @@
     "Get-SVForwarders",
     "Get-SVDnsServers",
     "Get-SVDhcpServerConfiguration",
-    "Get-SVExchangeserver",
-    "Import-SVPSRemotingGPO"
+    "Get-SVExchangeserver"
   ],
   "priorityChecks": [
     "Get-SVWindowsServices",
@@ -446,10 +445,5 @@
       "name": "Exchange Server Health",
       "enabled": true
     },
-    {
-      "id": "Import-SVPSRemotingGPO",
-      "name": "PowerShell Remoting Group Policy",
-      "enabled": true
-    }
   ]
 }
