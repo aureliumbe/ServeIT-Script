@@ -240,7 +240,13 @@ function Invoke-SVChecks {
         }
         $isDomainCheck = @($Context.Configuration.domainChecks) -contains $check.Id
         $isExchangeCheck = @($Context.Configuration.exchangeChecks) -contains $check.Id
-        $targets = if ($isDomainCheck) { @($null) } elseif ($isExchangeCheck) { @($Context.ExchangeServers) } else { @($Context.ComputerName) }
+        $targets = if ($isDomainCheck) {
+            ''
+        } elseif ($isExchangeCheck) {
+            @($Context.ExchangeServers)
+        } else {
+            @($Context.ComputerName)
+        }
         foreach ($computer in $targets) {
             try {
                 $usesContext = $invoke.Parameters.ContainsKey('Context')
